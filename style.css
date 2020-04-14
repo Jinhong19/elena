@@ -1,7 +1,25 @@
 #sidebar{
-    width: 36%;
+    width: 25%;
     position: fixed;
     height: 100%;
     background: black;
 }
 
+#sidebar #elena{
+     color: white;
+     padding-left: 10%;
+     position: relative;
+}
+
+#form{
+    padding-top: 10px;
+    padding-left: 10%;
+}
+
+#mapid{
+    position: absolute;
+    float: right;
+    margin-left: 320px;
+    width: 800px;
+    height: 500px;
+}
