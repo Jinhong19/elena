@@ -26,13 +26,19 @@
                 <input type="text" id="startlocation" name="slocation" placeholder="Start Location"><br><br>
                 <input type="text" id="endlocation" name="elocation" placeholder="End Location"><br><br>
                 <input type="number" id="percentageofshortestdistance" name="%distance" placeholder="% of shortest dist"><br><br>
+                <label id="minmaxlabel" for="minmax">Choose Min/Max: </label>
+                <select id="minmax" name="minmax">
+                    <option value="Min">Min</option>
+                    <option value="Max">Max</option>
+                </select>
+                <br><br>
                 <input type="submit" value="Submit">
               </form> 
         </aside>
         
        
         <script>
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        var mymap = L.map('mapid').setView([0, 0], 2);
        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicG5hZ3JhaiIsImEiOiJjazkwZW05OGcwMHl1M2VtdXhoeG4xYTlwIn0.sIjAUDjbWKYkXGTYlKp8Ww', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
