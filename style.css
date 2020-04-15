@@ -21,9 +21,8 @@
     color: white;
 }
 
-
 #mapid{
-    position: absolute;
+    position: fixed;
     float: right;
     margin-left: 320px;
     width: 800px;
