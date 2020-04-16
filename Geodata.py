@@ -1,4 +1,5 @@
 from math import sin, cos, sqrt, atan2, radians
+import sys
 
 class Location:
 	def __init__(self, locid, name, lat, lon, ele):
@@ -44,19 +45,148 @@ class Graph:
 	def add_street(self, street):
 		locations = street.listOfLocations
 		if len(locations) > 1:
-			for i in range(len(locations))-1:
-				distance = get_distance(locations[i], locations[i+1])
+			for i in range(len(locations)-1):
+				distance = self.get_distance(locations[i], locations[i+1])
+				ele_change = locations[i+1].ele - locations[i].ele
 				if(locations[i] in self.graph_dict):
-					self.graph_dict[locations[i]].append((locations[i+1], distance))
+					self.graph_dict[locations[i]].append((locations[i+1], distance, ele_change))
 				else:
-					self.graph_dict[locations[i]] = [(locations[i+1], distance)]
+					self.graph_dict[locations[i]] = [(locations[i+1], distance, ele_change)]
 				if(locations[i+1] in self.graph_dict):
-					self.graph_dict[locations[i+1]].append((locations[i], distance))
+					self.graph_dict[locations[i+1]].append((locations[i], distance, -ele_change))
 				else:
-					self.graph_dict[locations[i+1]] = [(locations[i], distance)]
+					self.graph_dict[locations[i+1]] = [(locations[i], distance, -ele_change)]
 
 	def initialization(self):
 		for location in self.locations:
-			add_location(location)
+			self.add_location(location)
 		for street in self.streets:
-			add_street(street)
+			self.add_street(street)
+
+	#Using Dijkstra algorithm for shortest path
+	def short_path(self, start, end, distance):
+		distance = 0
+		solution = []
+		q = []
+		dist = {}
+		prev = {}
+
+		for vertex in self.locations:
+			dist[vertex] = sys.maxsize
+			prev[vertex] = None
+			q = q + [vertex]
+		dist[start] = 0
+
+		while len(q) != 0:
+			current_min = sys.maxsize
+			target_min = None
+			for vertex in q:
+				if dist[vertex] < current_min:
+					current_min = dist[vertex]
+					target_min = vertex
+			q.remove(target_min)
+			if target_min == end:
+				distance = dist[end]
+				temp = end
+				while temp != None:
+					solution.insert(0, temp)
+					temp = prev[temp]
+				return solution
+
+			for path in self.graph_dict[target_min]:
+				if path[0] in q:
+					alt = dist[target_min] + path[1]
+					if alt < dist[path[0]]:
+						dist[path[0]] = alt
+						prev[path[0]] = target_min
+		return solution
+
+	def min_ele_path(self, start, end, distance, total_ele_gain):
+		distance = 0
+		total_ele_gain = 0
+		solution = []
+		q = []
+		ele_gain = {}
+		prev = {}
+		distance = {}
+
+		for vertex in self.locations:
+			ele_gain[vertex] = sys.maxsize
+			prev[vertex] = None
+			q = q + [vertex]
+		ele_gain[start] = 0
+		distance[start] = 0
+
+		while len(q) != 0:
+			current_min = sys.maxsize
+			target_min = None
+			for vertex in q:
+				if ele_gain[vertex] < current_min:
+					current_min = ele_gain[vertex]
+					target_min = vertex
+			q.remove(target_min)
+			if target_min == end:
+				distance = distance[end]
+				total_ele_gain = ele_gain[end]
+				temp = end
+				while temp != None:
+					solution.insert(0, temp)
+					temp = prev[temp]
+				return solution
+
+			for path in self.graph_dict[target_min]:
+				if path[0] in q:
+					alt = ele_gain[target_min]
+					if path[2] > 0:
+						alt = alt + path[2]
+					if alt < ele_gain[path[0]]:
+						ele_gain[path[0]] = alt
+						prev[path[0]] = target_min
+						distance[path[0]] = distance[target_min] + path[1]
+
+		return solution
+
+	def max_ele_path(self, start, end, distance, total_ele_gain):
+		distance = 0
+		total_ele_gain = 0
+		solution = []
+		q = []
+		ele_gain = {}
+		prev = {}
+		distance = {}
+
+		for vertex in self.locations:
+			ele_gain[vertex] = -2
+			prev[vertex] = None
+			q = q + [vertex]
+		ele_gain[start] = 0
+		distance[start] = 0
+
+		while len(q) != 0:
+			current_max = -1
+			target_max = None
+			for vertex in q:
+				if ele_gain[vertex] > current_max:
+					current_max = ele_gain[vertex]
+					target_max = vertex
+			q.remove(target_max)
+			if target_max == end:
+				distance = distance[end]
+				total_ele_gain = ele_gain[end]
+				temp = end
+				while temp != None:
+					solution.insert(0, temp)
+					temp = prev[temp]
+				return solution
+
+			for path in self.graph_dict[target_max]:
+				if path[0] in q:
+					alt = ele_gain[target_max]
+					if path[2] > 0:
+						alt = alt + path[2]
+					if alt > ele_gain[path[0]]:
+						ele_gain[path[0]] = alt
+						prev[path[0]] = target_max
+						distance[path[0]] = distance[target_max] + path[1]
+
+		return path
