@@ -12,20 +12,19 @@
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@latest/dist/leaflet.css" />
-    <link rel="stylesheet" href="../dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="leaflet-routing-machine.js"></script>
 
-    <script src="https://unpkg.com/leaflet@latest/dist/leaflet-src.js"></script>
-    <script src="../dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="leaflet-routing-machine.css" />
+
 
     <link rel="stylesheet" href="style.css">
-
+    
     </head>
     <body>
-       
+      
         <div id="mapid"></div>
-
-
         <aside id="sidebar">
             <h1 id="elena">ELENA</h1>
             <form id="form" action="/action_page.php">
@@ -41,7 +40,9 @@
                 <input type="submit" value="Submit">
               </form> 
         </aside>
+
         <script src="scripts.js"></script>
+
     
     </body>
 </html>
