@@ -11,14 +11,17 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
      zoomOffset: -1,
  }).addTo(map);
 
-
+ 
  L.Routing.control({
     waypoints: [
         L.latLng(57.74, 11.94),
         L.latLng(57.6792, 11.949)
     ],
 	routeWhileDragging: true,
-	router: L.Routing.mapbox('pk.eyJ1IjoicG5hZ3JhaiIsImEiOiJjazkwZW05OGcwMHl1M2VtdXhoeG4xYTlwIn0.sIjAUDjbWKYkXGTYlKp8Ww')
+    router: L.Routing.mapbox('pk.eyJ1IjoicG5hZ3JhaiIsImEiOiJjazkwZW05OGcwMHl1M2VtdXhoeG4xYTlwIn0.sIjAUDjbWKYkXGTYlKp8Ww'),
+    geocoder: L.Control.Geocoder.nominatim()
 }).addTo(map);
+
+
 ////////////////////////////////////
 
