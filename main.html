@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Flat UI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -28,10 +30,11 @@
     <body>
       
         <div id="mapid"></div>
+       
         <aside id="sidebar">
             <h1 id="elena">ELENA</h1>
-            <form id="form" action="/action_page.php">
-                <input type="text" id="startlocation" name="slocation" placeholder="Start Location"><br><br>
+            <form id="form" action="" onsubmit="return myFunction()">
+                <input type="text" id="startlocation" name="slocation" placeholder="Start Location" ><br><br>
                 <input type="text" id="endlocation" name="elocation" placeholder="End Location"><br><br>
                 <input type="number" id="percentageofshortestdistance" name="%distance" placeholder="% of shortest dist"><br><br>
                 <label id="minmaxlabel" for="minmax">Choose Min/Max: </label>
@@ -45,6 +48,8 @@
         </aside>
 
         <script src="scripts.js"></script>
+
+       
 
     
     </body>

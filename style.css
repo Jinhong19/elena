@@ -17,6 +17,10 @@
     padding-left: 10%;
 }
 
+.leaflet-routing-container {
+    display:none;
+  }
+
 #form #minmaxlabel{
     color: white;
 }
