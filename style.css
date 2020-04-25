@@ -1,0 +1,34 @@
+#sidebar{
+    width: 25%;
+    position: fixed;
+    height: 100%;
+    background: black;
+    margin-bottom: 50px;
+}
+
+#sidebar #elena{
+     color: white;
+     padding-left: 10%;
+     position: relative;
+}
+
+#form{
+    padding-top: 10px;
+    padding-left: 10%;
+}
+
+.leaflet-routing-container {
+    display:none;
+  }
+
+#form #minmaxlabel{
+    color: white;
+}
+
+#mapid{
+    position: fixed;
+    float: right;
+    margin-left: 320px;
+    width: 70%;
+    height: 80%;
+}
