@@ -32,9 +32,7 @@ shortest_path, shortest_distance = graph.short_path(start, end)
 
 graph.bfs(start, end, shortest_distance)
 
-path_json = {}
-
-x = {
+json_output = {
   "start_point": start.to_json(),
   "end_point": end.to_json(),
   "shortest_distance": shortest_distance,
@@ -42,4 +40,4 @@ x = {
   "all_path": all_path_to_json(graph.all_path)
 }
 
-print(json.dumps(x, indent=4))
+print(json.dumps(json_output, indent=4))
