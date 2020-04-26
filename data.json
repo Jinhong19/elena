@@ -1,0 +1,96 @@
+{
+    "start_point": {
+        "id": 0,
+        "name": "location 0",
+        "lat": 0.0005,
+        "lon": 0.0005,
+        "ele": 5
+    },
+    "end_point": {
+        "id": 2,
+        "name": "location 2",
+        "lat": 0.0015,
+        "lon": 0.0015,
+        "ele": 15
+    },
+    "shortest_distance": 0.1573027386808184,
+    "shortest_path": [
+        {
+            "id": 0,
+            "name": "location 0",
+            "lat": 0.0005,
+            "lon": 0.0005,
+            "ele": 5
+        },
+        {
+            "id": 1,
+            "name": "location 1",
+            "lat": 0.001,
+            "lon": 0.001,
+            "ele": 10
+        },
+        {
+            "id": 2,
+            "name": "location 2",
+            "lat": 0.0015,
+            "lon": 0.0015,
+            "ele": 15
+        }
+    ],
+    "all_path": [
+        {
+            "distance": 0.1573027386808184,
+            "ele_gain": 10,
+            "path": [
+                {
+                    "id": 0,
+                    "name": "location 0",
+                    "lat": 0.0005,
+                    "lon": 0.0005,
+                    "ele": 5
+                },
+                {
+                    "id": 1,
+                    "name": "location 1",
+                    "lat": 0.001,
+                    "lon": 0.001,
+                    "ele": 10
+                },
+                {
+                    "id": 2,
+                    "name": "location 2",
+                    "lat": 0.0015,
+                    "lon": 0.0015,
+                    "ele": 15
+                }
+            ]
+        },
+        {
+            "distance": 0.31460547733767824,
+            "ele_gain": 15,
+            "path": [
+                {
+                    "id": 0,
+                    "name": "location 0",
+                    "lat": 0.0005,
+                    "lon": 0.0005,
+                    "ele": 5
+                },
+                {
+                    "id": 3,
+                    "name": "location 3",
+                    "lat": 0.002,
+                    "lon": 0.002,
+                    "ele": 20
+                },
+                {
+                    "id": 2,
+                    "name": "location 2",
+                    "lat": 0.0015,
+                    "lon": 0.0015,
+                    "ele": 15
+                }
+            ]
+        }
+    ]
+}

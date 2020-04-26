@@ -1,4 +1,4 @@
-from geodata import *
+from Geodata import *
 import json
 
 def path_to_json(path):
@@ -22,7 +22,7 @@ fake_locations = [fake_location0, fake_location1, fake_location2, fake_location3
 fake_locations0 = [fake_location0, fake_location1]
 fake_locations1 = [fake_location0, fake_location3]
 fake_locations2 = [fake_location1, fake_location2]
-fake_locations3 = [fake_location3, fake_location2]
+fake_locations3 = [fake_location2, fake_location3]
 
 locations = fake_locations
 streets = [Street(0, "street 0", fake_locations0), Street(1, "street 1", fake_locations1), Street(2, "street 2", fake_locations2), Street(3, "street 3", fake_locations3)]
@@ -47,4 +47,5 @@ json_output = {
   "all_path": all_path_to_json(graph.all_path)
 }
 
-print(json.dumps(json_output, indent=4))
+with open('data.json', 'w', encoding='utf-8') as f:
+	json.dump(json_output, f, ensure_ascii=False, indent=4)
