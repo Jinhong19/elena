@@ -1,4 +1,18 @@
 from geodata import *
+import json
+
+def path_to_json(path):
+	json_list = []
+	for i in path:
+		json_list.append(i.to_json())
+	return json_list
+
+def all_path_to_json(all_path):
+	json_list = []
+	for i in all_path:
+		json_list.append({"distance": i[1], "ele_gain": i[2], "path": path_to_json(i[0])})
+	return json_list
+
 
 fake_location0 = Location(0, "location 0", 0.0005, 0.0005, 5)
 fake_location1 = Location(1, "location 1", 0.001, 0.001, 10)
@@ -11,24 +25,21 @@ start = fake_locations[0]
 end = fake_locations[2]
 shortest_distance = 0
 shortest_path = []
-min_ele_distance = 0
-min_ele_gain = 0
-min_ele_path = []
-max_ele_distance = 0
-max_ele_gain = 0
-max_ele_path = []
 
 graph = Graph(locations, streets)
 graph.initialization()
-shortest_path = graph.short_path(start, end, shortest_distance)
-min_ele_path = graph.min_ele_path(start, end, min_ele_distance, min_ele_gain)
-max_ele_path = graph.max_ele_path(start, end, max_ele_distance, max_ele_gain)
-print()
-for vertex in shortest_path:
-	print(vertex.locid, vertex.name)
-print()
-for vertex in min_ele_path:
-	print(vertex.locid, vertex.name)
-print()
-for vertex in max_ele_path:
-	print(vertex.locid, vertex.name)
+shortest_path, shortest_distance = graph.short_path(start, end)
+
+graph.bfs(start, end, shortest_distance)
+
+path_json = {}
+
+x = {
+  "start_point": start.to_json(),
+  "end_point": end.to_json(),
+  "shortest_distance": shortest_distance,
+  "shortest_path": path_to_json(shortest_path),
+  "all_path": all_path_to_json(graph.all_path)
+}
+
+print(json.dumps(x, indent=4))

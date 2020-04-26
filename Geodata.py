@@ -9,6 +9,9 @@ class Location:
 		self.lon = lon
 		self.ele = ele
 
+	def to_json(self):
+		return {"id": self.locid, "name": self.name, "lat": self.lat, "lon": self.lon, "ele": self.ele}
+
 class Street:
 	def __init__(self, stid, name, listOfLocations):
 		self.stid = stid
@@ -20,6 +23,7 @@ class Graph:
 		self.locations = locations
 		self.streets = streets
 		self.graph_dict = {}
+		self.all_path = []
 
 	def get_distance(self, location1, location2):
 		R = 6373
@@ -64,7 +68,7 @@ class Graph:
 			self.add_street(street)
 
 	#Using Dijkstra algorithm for shortest path
-	def short_path(self, start, end, distance):
+	def short_path(self, start, end):
 		distance = 0
 		solution = []
 		q = []
@@ -91,7 +95,7 @@ class Graph:
 				while temp != None:
 					solution.insert(0, temp)
 					temp = prev[temp]
-				return solution
+				return solution, distance
 
 			for path in self.graph_dict[target_min]:
 				if path[0] in q:
@@ -99,9 +103,11 @@ class Graph:
 					if alt < dist[path[0]]:
 						dist[path[0]] = alt
 						prev[path[0]] = target_min
-		return solution
+		return solution, distance
 
-	def min_ele_path(self, start, end, distance, total_ele_gain):
+	#Using Dijkstra algorithm for min ele gain path
+	#Find the min ele gain for sure without the length limit
+	def min_ele_dijk(self, start, end, distance, total_ele_gain):
 		distance = 0
 		total_ele_gain = 0
 		solution = []
@@ -146,7 +152,9 @@ class Graph:
 
 		return solution
 
-	def max_ele_path(self, start, end, distance, total_ele_gain):
+	#Using Dijkstra algorithm for max ele gain path
+	#Find the max ele gain for sure without the length limit
+	def max_ele_dijk(self, start, end, distance, total_ele_gain):
 		distance = 0
 		total_ele_gain = 0
 		solution = []
@@ -189,4 +197,38 @@ class Graph:
 						prev[path[0]] = target_max
 						distance[path[0]] = distance[target_max] + path[1]
 
-		return path
+		return solution
+
+	#Using BFS with length limit for all paths
+	#Find all paths from start to end within the length limit
+
+	def bfs_helper(self, u, d, visited, path, current_distance, distance_limit, current_ele_gain):
+		visited[u] = True
+		path.append(u)
+
+		if u == d:
+			temp = []
+			for i in path:
+				temp.append(i)
+			self.all_path.append((temp, current_distance, current_ele_gain))
+		else:
+			for i in self.graph_dict[u]:
+				if visited[i[0]] == False:
+					if current_distance + i[1] <= distance_limit:
+						ele_gain = 0
+						if i[2] > 0:
+							ele_gain = i[2]
+						self.bfs_helper(i[0], d, visited, path, current_distance + i[1], distance_limit, current_ele_gain + ele_gain)
+
+		path.pop()
+		visited[u] = False
+
+	def bfs(self, s, d, distance_limit):
+		visited = {}
+		for vertex in self.locations:
+			visited[vertex] = False
+
+		path = []
+		current_distance = 0
+		current_ele_gain = 0
+		self.bfs_helper(s, d, visited, path, current_distance, distance_limit, current_ele_gain)
