@@ -24,11 +24,13 @@ streets = [Street(0, "street 0", fake_locations)]
 start = fake_locations[0]
 end = fake_locations[2]
 shortest_distance = 0
+distance_limit = 0
 shortest_path = []
 
 graph = Graph(locations, streets)
 graph.initialization()
 shortest_path, shortest_distance = graph.short_path(start, end)
+distance_limit = shortest_distance
 
 graph.bfs(start, end, shortest_distance)
 
