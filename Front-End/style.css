@@ -1,5 +1,5 @@
 #sidebar{
-    width: 25%;
+    width: 20%;
     position: fixed;
     height: 100%;
     background: black;
@@ -21,6 +21,7 @@
     display:none;
   }
 
+
 #form #minmaxlabel{
     color: white;
 }
@@ -28,7 +29,7 @@
 #mapid{
     position: fixed;
     float: right;
-    margin-left: 320px;
+    margin-left: 250px;
     width: 74.5%;
     height: 98%;
 }
