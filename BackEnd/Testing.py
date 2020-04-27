@@ -4,13 +4,13 @@ from eleFinder import eleFinder
 eleFinder = eleFinder()
 
 def test_getEle1():
-    assert eleFinder.getEle(42.360033, -71.055147) == 11
+    assert round(eleFinder.getEle(42.36003, -71.05515), 2) == 2.73
 
 def test_getEle2():
-    assert eleFinder.getEle(42.361238, -71.049158) == -2
+    assert round(eleFinder.getEle(42.36124, -71.04916), 2) == -2.10
 
 def test_getEle3():
-    assert eleFinder.getEle(42.358004, -71.057745) == 132
+    assert round(eleFinder.getEle(42.35800, -71.05776), 2) == 8.38
 
 test_getEle1()
 test_getEle2()
