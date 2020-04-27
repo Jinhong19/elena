@@ -1,7 +1,6 @@
 import sys
 import os
 sys.path.insert(1, os.path.abspath("BackEnd"))
-print(os.path.abspath("elena/BackEnd"))
 from eleFinder import *
 
 eleFinder = eleFinder()
