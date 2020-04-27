@@ -8,8 +8,11 @@ var endLatLong = [0.0, 0.0];
 
 var startValue = document.getElementById("startlocation").value;
 var endValue = document.getElementById("endlocation").value;
+let persentage = document.getElementById("").value
 
 // Send request to server
+// response format: data = {start: Boston, end: Amherst, route: [{lat: 71.32, lon:21.1231}, {lat: 12.12, lon: 22.12}]}
+// access: data.routes[0].lat
 const url = 'http://localhost:5000/positions'
 console.log('fetching with ' + url)
 let data = {start: startValue, end: endValue}
@@ -23,7 +26,8 @@ fetch(url, {
     .then(res => res.json())
     .then(data => {
         console.log(data)
-    })
+    }
+)
 
 if(startValue.localeCompare("boston") == 0){
         startLatLong[0] = 42.340382; startLatLong[1] = -71.496819;
