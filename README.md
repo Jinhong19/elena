@@ -2,12 +2,11 @@
 
 ## Dependencies
 Create and activate virtual environment  
-`python3 -m venv venv`
+`python3 -m venv venv`  
 `source venv/bin/activate`
 
-Install dependencies
+Install dependencies  
 `pip3 install -r requirements.txt`
 
 ## Run Server Locally
-
-`python3 server.py`
+`python3 Back-End/server.py`

@@ -9,6 +9,22 @@ var endLatLong = [0.0, 0.0];
 var startValue = document.getElementById("startlocation").value;
 var endValue = document.getElementById("endlocation").value;
 
+// Send request to server
+const url = 'http://localhost:5000/positions'
+console.log('fetching with ' + url)
+let data = {start: startValue, end: endValue}
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+    })
+
 if(startValue.localeCompare("boston") == 0){
         startLatLong[0] = 42.340382; startLatLong[1] = -71.496819;
 }
