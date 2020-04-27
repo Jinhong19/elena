@@ -28,17 +28,18 @@
 
     </head>
     <body>
-        <div class="topnav">
+        <div id ="topnavbar" class="topnav">
             <h2 id="elena">ELENA</h2>
             <form id="form" action="" onsubmit="return myFunction()">
                 <input type="text" id="startlocation" name="slocation" placeholder="Start Location" >
-                <input type="text" id="endlocation" name="elocation" placeholder="End Location">
-                <input type="number" id="percentageofshortestdistance" name="%distance" placeholder="% of shortest dist">                <select class="form-control" id="minmax" name="minmax">
+                <input  type="text" id="endlocation" name="elocation" placeholder="End Location">
+                <input class="form-control" type="number" id="percentageofshortestdistance" name="%distance" placeholder="%ofSD">               
+                 <select class="form-control" id="minmax" name="minmax">
                     <option value="Min">Min</option>
                     <option value="Max">Max</option>
                 </select>
                 <input id="submitbutton" type="submit" value="Submit" class="btn btn-primary btn-sm">
-            </div>
+            </form>
           </div>
 
         <!-- <aside id="sidebar">

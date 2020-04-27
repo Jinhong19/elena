@@ -1,33 +1,60 @@
 
-/* side bar */
-#sidebar{
-    width: 20%;
-    position: fixed;
-    height: 50%;
-    background: lightblue;
-    border: solid 2px black;
-    margin-bottom: 50px;
-}
 
-#sidebar #elena{
-     color: black;
-     margin-right: 0;
-     display: inline-block;
-}
-
-#sidebar #submitbutton{
-   margin-left: 50px;
-}
-
-#sidebar #minmax{
-   width: 175px;
+/* Nav bar*/
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+  padding-bottom: 20px;
 }
 
 /* form  */
+#topnavbar #elena {
+  float: left;
+  background: #e9e9e9;
+  padding-top: 15px;
+  padding-left: 10px;
 
+}
 
-#form #minmaxlabel{
-    color: white;
+#topnavbar #form {
+  position: relative;
+  top: 18px;
+  left: 10px;
+  float: left;
+
+}
+
+#form #startlocation{
+  width: 200px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#form #endlocation{
+  width: 200px;
+  float: left;
+  margin-right: 10px;
+}
+
+#form #percentageofshortestdistance{
+  width: 100px;
+  height: 30px;
+  float: left;
+  margin-right: 10px;
+}
+
+#form #minmax{
+  color: black;
+  width: 200px;
+  height: 29px;
+  float: left;
+  margin-right: 10px;
+}
+
+#form #submitbutton{
+  color: black;
+  height: 28px;
 }
 
 /* Map */
@@ -35,9 +62,8 @@
     position: fixed;
     float: right;
     border: solid 2px black;
-    margin-left: 265px;
-    width: 79%;
-    height: 98%;
+    width: 100%;
+    height: 89%;
 }
 
 .leaflet-routing-container {
@@ -45,21 +71,8 @@
   }
 
 
-  /* Nav bar*/
-  .topnav {
-    overflow: hidden;
-    background-color: #e9e9e9;
-  }
+
   
-  .topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
+
 
 
