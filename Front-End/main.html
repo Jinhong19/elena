@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Flat UI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -24,32 +25,39 @@
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
     <link rel="stylesheet" href="style.css">
-    
+
     </head>
     <body>
-       
-        <aside id="sidebar">
+        <div id ="topnavbar" class="topnav">
+            <h2 id="elena">ELENA</h2>
+            <form id="form" action="" onsubmit="return myFunction()">
+                <input type="text" id="startlocation" name="slocation" placeholder="Start Location" >
+                <input  type="text" id="endlocation" name="elocation" placeholder="End Location">
+                <input class="form-control" type="number" id="percentageofshortestdistance" name="%distance" placeholder="%ofSD">               
+                 <select class="form-control" id="minmax" name="minmax">
+                    <option value="Min">Min</option>
+                    <option value="Max">Max</option>
+                </select>
+                <input id="submitbutton" type="submit" value="Submit" class="btn btn-primary btn-sm">
+            </form>
+          </div>
+
+        <!-- <aside id="sidebar">
             <h1 id="elena">ELENA</h1>
             <form id="form" action="" onsubmit="return myFunction()">
                 <input type="text" id="startlocation" name="slocation" placeholder="Start Location" ><br><br>
                 <input type="text" id="endlocation" name="elocation" placeholder="End Location"><br><br>
                 <input type="number" id="percentageofshortestdistance" name="%distance" placeholder="% of shortest dist"><br><br>
-                <label id="minmaxlabel" for="minmax">Choose Min/Max: </label>
-                <select id="minmax" name="minmax">
+                <select class="form-control" id="minmax" name="minmax">
                     <option value="Min">Min</option>
                     <option value="Max">Max</option>
                 </select>
-                <br><br>
-                <input type="submit" value="Submit">
+                <br>
+                <input id="submitbutton" type="submit" value="Submit" class="btn btn-primary btn-sm">
               </form> 
-        </aside>
+        </aside> -->
 
         <div id="mapid"></div>
-
-        <script src="scripts.js"></script>
-
-       
-
-    
+        <script src="scripts.js"></script>    
     </body>
 </html>
