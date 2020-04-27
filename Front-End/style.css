@@ -1,20 +1,43 @@
+
+/* side bar */
 #sidebar{
     width: 20%;
     position: fixed;
-    height: 100%;
-    background: black;
+    height: 50%;
+    background: lightblue;
+    border: solid 2px black;
     margin-bottom: 50px;
 }
 
 #sidebar #elena{
-     color: white;
-     padding-left: 10%;
-     position: relative;
+     color: black;
+     margin-right: 0;
+     display: inline-block;
 }
 
-#form{
-    padding-top: 10px;
-    padding-left: 10%;
+#sidebar #submitbutton{
+   margin-left: 50px;
+}
+
+#sidebar #minmax{
+   width: 175px;
+}
+
+/* form  */
+
+
+#form #minmaxlabel{
+    color: white;
+}
+
+/* Map */
+#mapid{
+    position: fixed;
+    float: right;
+    border: solid 2px black;
+    margin-left: 265px;
+    width: 79%;
+    height: 98%;
 }
 
 .leaflet-routing-container {
@@ -22,14 +45,21 @@
   }
 
 
-#form #minmaxlabel{
-    color: white;
-}
+  /* Nav bar*/
+  .topnav {
+    overflow: hidden;
+    background-color: #e9e9e9;
+  }
+  
+  .topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
 
-#mapid{
-    position: fixed;
-    float: right;
-    margin-left: 250px;
-    width: 74.5%;
-    height: 98%;
-}
+
