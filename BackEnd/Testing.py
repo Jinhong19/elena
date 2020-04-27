@@ -1,4 +1,5 @@
-from BackEnd import eleFinder
+import sys
+from eleFinder import eleFinder
 
 eleFinder = eleFinder()
 
@@ -10,3 +11,7 @@ def test_getEle2():
 
 def test_getEle3():
     assert eleFinder.getEle(42.358004, -71.057745) == 132
+
+test_getEle1()
+test_getEle2()
+test_getEle3()
