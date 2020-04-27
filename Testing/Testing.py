@@ -1,5 +1,6 @@
 import sys
 import os
+<<<<<<< HEAD
 sys.path.insert(1, os.path.abspath("../BackEnd"))
 from eleFinder import *
 
