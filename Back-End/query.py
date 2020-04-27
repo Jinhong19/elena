@@ -9,7 +9,8 @@ eleFinder = eleFinder()
 db.create_all()
 
 # Geodata Query
-area = [42.351000, -71.063000, 42.353000, -71.061000] # boston
+# area = [42.351000, -71.063000, 42.353000, -71.061000] # boston, south, west, north, east
+area = [42.371082, -72.538644, 42.395476, -72.499210] # Amherst
 
 # insert into database
 def query():

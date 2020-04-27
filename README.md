@@ -10,3 +10,6 @@ Install dependencies
 
 ## Run Server Locally
 `python3 Back-End/server.py`
+
+## open from browser
+open from a browser: Fron-End/main.html
