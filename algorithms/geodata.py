@@ -2,21 +2,16 @@ from math import sin, cos, sqrt, atan2, radians
 import sys
 
 class Location:
-	def __init__(self, locid, name, lat, lon, ele):
+	def __init__(self, locid, name, lat, lon, ele, street):
 		self.locid = locid
 		self.name = name
 		self.lat = lat
 		self.lon = lon
 		self.ele = ele
+		self.street = street
 
 	def to_json(self):
 		return {"id": self.locid, "name": self.name, "lat": self.lat, "lon": self.lon, "ele": self.ele}
-
-class Street:
-	def __init__(self, stid, name, listOfLocations):
-		self.stid = stid
-		self.name = name
-		self.listOfLocations = listOfLocations
 
 class Graph:
 	def __init__(self, locations, streets):
@@ -47,25 +42,45 @@ class Graph:
 			self.graph_dict[location] = []
 
 	def add_street(self, street):
-		locations = street.listOfLocations
-		if len(locations) > 1:
-			for i in range(len(locations)-1):
-				distance = self.get_distance(locations[i], locations[i+1])
-				ele_change = locations[i+1].ele - locations[i].ele
-				if(locations[i] in self.graph_dict):
-					self.graph_dict[locations[i]].append((locations[i+1], distance, ele_change))
-				else:
-					self.graph_dict[locations[i]] = [(locations[i+1], distance, ele_change)]
-				if(locations[i+1] in self.graph_dict):
-					self.graph_dict[locations[i+1]].append((locations[i], distance, -ele_change))
-				else:
-					self.graph_dict[locations[i+1]] = [(locations[i], distance, -ele_change)]
+		locations = street
+		center = Location(-1, "temp_center", 0, 0, 0, "")
+		for sp in locations:
+			center.lat = center.lat + sp.lat
+			center.lon = center.lon + sp.lon
+		center.lat = center.lat / len(locations)
+		center.lon = center.lon / len(locations)
+		edge = center
+		edge_distance = 0
+		for sp in locations:
+			if self.get_distance(center, sp) > edge_distance:
+				edge_distance = self.get_distance(center, sp)
+				edge = sp
+
+		locations.remove(edge)
+		while len(locations) > 0:
+			close = locations[0]
+			close_distance = self.get_distance(edge, locations[0])
+			for sp in locations:
+				if self.get_distance(edge, sp) < close_distance:
+					close_distance = self.get_distance(edge, sp)
+					close = sp
+			ele_change = close.ele - edge.ele
+			if edge in self.graph_dict:
+				self.graph_dict[edge].append((close, close_distance, ele_change))
+			else:
+				self.graph_dict[edge] = [(close, close_distance, ele_change)]
+			if close in self.graph_dict:
+				self.graph_dict[close].append((edge, close_distance, -ele_change))
+			else:
+				self.graph_dict[close] = [(edge, close_distance, -ele_change)]
+			edge = close
+			locations.remove(close)
 
 	def initialization(self):
 		for location in self.locations:
 			self.add_location(location)
 		for street in self.streets:
-			self.add_street(street)
+			self.add_street(self.streets[street])
 
 	#Using Dijkstra algorithm for shortest path
 	def short_path(self, start, end):
