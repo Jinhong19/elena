@@ -1,6 +1,12 @@
 from server import Place
+from server import Intersection
 
-data = Place.query.all()
+places = Place.query.all()
 
-for sp in data: 
-    print(sp.name, sp.ele, sp.lon)
+for e in places: 
+    print(e.name, e.ele, e.lon)
+
+intersections = Intersection.query.all()
+
+for e in intersections: 
+    print(e)
