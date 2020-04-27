@@ -14,11 +14,12 @@ class Location:
 		return {"id": self.locid, "name": self.name, "lat": self.lat, "lon": self.lon, "ele": self.ele}
 
 class Graph:
-	def __init__(self, locations, streets):
+	def __init__(self, locations, streets, intersections):
 		self.locations = locations
 		self.streets = streets
 		self.graph_dict = {}
 		self.all_path = []
+		self.intersections = intersections
 
 	def get_distance(self, location1, location2):
 		R = 6373
@@ -36,6 +37,18 @@ class Graph:
 		distance = R * c
 		#The distance is in km
 		return distance
+
+	def link(self, location1, location2):
+		distance = self.get_distance(location1, location2)
+		ele_change = location2.ele - location1.ele
+		if location1 in self.graph_dict:
+			self.graph_dict[location1].append((location2, distance, ele_change))
+		else:
+			self.graph_dict[location1] = [(location2, distance, ele_change)]
+		if location2 in self.graph_dict:
+			self.graph_dict[location2].append((location1, distance, -ele_change))
+		else:
+			self.graph_dict[location2] = [(location1, distance, -ele_change)]
 
 	def add_location(self, location):
 		if location not in self.graph_dict:
@@ -65,22 +78,38 @@ class Graph:
 					close_distance = self.get_distance(edge, sp)
 					close = sp
 			ele_change = close.ele - edge.ele
-			if edge in self.graph_dict:
-				self.graph_dict[edge].append((close, close_distance, ele_change))
-			else:
-				self.graph_dict[edge] = [(close, close_distance, ele_change)]
-			if close in self.graph_dict:
-				self.graph_dict[close].append((edge, close_distance, -ele_change))
-			else:
-				self.graph_dict[close] = [(edge, close_distance, -ele_change)]
+			self.link(edge, close)
 			edge = close
 			locations.remove(close)
+
+	def add_intersection(self, intersection):
+		st1 = intersection.firstStreet
+		st2 = intersection.secondStreet
+		if st1 not in self.streets || st2 not in self.streets:
+			print("Error: Street in intersection not found")
+			return
+		close1 = self.streets[st1][0]
+		close2 = self.streets[st2][0]
+		center = Location(-1, "temp_center", intersection.lat, intersection.lon, 0, "")
+		close_distance1 = self.get_distance(center, close1)
+		close_distance2 = self.get_distance(center, close2)
+		for sp in self.streets[st1]:
+			if self.get_distance(sp, center) < close_distance1:
+				close_distance1 = self.get_distance(sp, center)
+				close1 = sp
+		for sp in self.streets[st2]:
+			if self.get_distance(sp, center) < close_distance2:
+				close_distance2 = self.get_distance(sp, center)
+				close2 = sp
+		self.link(close1, close2)
 
 	def initialization(self):
 		for location in self.locations:
 			self.add_location(location)
 		for street in self.streets:
 			self.add_street(self.streets[street])
+		for it in self.intersections:
+			self.add_intersection(it)
 
 	#Using Dijkstra algorithm for shortest path
 	def short_path(self, start, end):

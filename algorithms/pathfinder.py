@@ -2,7 +2,7 @@ import sys
 import os
 print(os.path.abspath("../Back-End"))
 sys.path.insert(1, os.path.abspath("../Back-End"))
-#from server import Place
+from server import Place
 from geodata import *
 import json
 
@@ -20,17 +20,20 @@ def all_path_to_json(all_path):
 
 def main_controller(start, end, percent):
 
+	"""
 	location0 = Location(0, "location0", 0.0001, 0.0001, 1, "street0")
 	location1 = Location(1, "location1", 0.0002, 0.0002, 2, "street0")
 	location2 = Location(2, "location2", 0.0003, 0.0003, 3, "street0")
 	location3 = Location(3, "location3", 0.0004, 0.0004, 4, "street0")
 	location4 = Location(4, "location4", 0.0005, 0.0005, 5, "street0")
 	locations = [location0, location1, location2, location3, location4]
+	"""
+	locations_data = Place.query.all()
+	locations = []
+	intersections_data = Intersection.query.all()
+	for sp in locations_data:
+		locations.append(Location(sp.id, sp.name, sp.lat, sp.lon, sp.ele, sp.street))
 
-#	data = Place.query.all()
-#	locations = []
-#	for sp in data:
-#		locations.append(Location(sp.id, sp.name, sp.lat, sp.lon, sp.ele, sp.street))
 	streets = {}
 	for sp in locations:
 		if sp.street in streets:
@@ -39,7 +42,7 @@ def main_controller(start, end, percent):
 			streets[sp.street] = [sp]
 
 
-	graph = Graph(locations, streets)
+	graph = Graph(locations, streets, intersections_data)
 	graph.initialization()
 	
 	for sp in graph.graph_dict:
@@ -72,12 +75,12 @@ def main_controller(start, end, percent):
 	distance_limit = shortest_distance * percent
 	graph.bfs(start_point, end_point, distance_limit)
 	json_output = {
-	  "start_point": start_point.to_json(),
-	  "end_point": end_point.to_json(),
-	  "shortest_distance": shortest_distance,
-	  "shortest_path": path_to_json(shortest_path),
-	  "all_path": all_path_to_json(graph.all_path)
+		"start_point": start_point.to_json(),
+		"end_point": end_point.to_json(),
+		"shortest_distance": shortest_distance,
+		"shortest_path": path_to_json(shortest_path),
+		"all_path": all_path_to_json(graph.all_path)
 	}
-	print(json.dumps(json_output, indent=4))
+	return(json.dumps(json_output, indent=4))
 
-main_controller("location0", "location4", 3.0)
+print(main_controller("name of the start point", "name of the end point", "percentage of shortest path in double 1.2 as 120%"))
