@@ -56,6 +56,8 @@ class Graph:
 
 	def add_street(self, street):
 		locations = street
+		if len(locations) < 2:
+			return
 		center = Location(-1, "temp_center", 0, 0, 0, "")
 		for sp in locations:
 			center.lat = center.lat + sp.lat
@@ -85,7 +87,7 @@ class Graph:
 	def add_intersection(self, intersection):
 		st1 = intersection.firstStreet
 		st2 = intersection.secondStreet
-		if st1 not in self.streets || st2 not in self.streets:
+		if st1 not in self.streets or st2 not in self.streets:
 			print("Error: Street in intersection not found")
 			return
 		close1 = self.streets[st1][0]

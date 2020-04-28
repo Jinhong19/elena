@@ -28,6 +28,7 @@ def main_controller(start, end, percent):
 	location4 = Location(4, "location4", 0.0005, 0.0005, 5, "street0")
 	locations = [location0, location1, location2, location3, location4]
 	"""
+	
 	locations_data = Place.query.all()
 	locations = []
 	intersections_data = Intersection.query.all()
