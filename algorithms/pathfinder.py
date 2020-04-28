@@ -101,6 +101,13 @@ def main_controller(start, end, percent):
 		"all_path": all_path_to_json(graph.all_path)
 	}
 	print(json.dumps(json_output, indent=4))
-	return(json.dumps(json_output, indent=4))
+	return_list = []
+	for path in graph.all_path:
+		path_list = []
+		for sp in path[0]:
+			path_list.append([sp.lat, sp.lon])
+		return_list.append([path_list, path[2]])
+	print(return_list)
+	return(return_list)
 
-main_controller("Bruno's", "Northampton Cooperative Bank", 1.4)
+main_controller("Bruno's", "Northampton Cooperative Bank", 1.0)
