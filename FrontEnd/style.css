@@ -1,20 +1,69 @@
-#sidebar{
-    width: 20%;
+
+
+/* Nav bar*/
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+  padding-bottom: 20px;
+}
+
+/* form  */
+#topnavbar #elena {
+  float: left;
+  background: #e9e9e9;
+  padding-top: 15px;
+  padding-left: 10px;
+
+}
+
+#topnavbar #form {
+  position: relative;
+  top: 18px;
+  left: 10px;
+  float: left;
+
+}
+
+#form #startlocation{
+  width: 200px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#form #endlocation{
+  width: 200px;
+  float: left;
+  margin-right: 10px;
+}
+
+#form #percentageofshortestdistance{
+  width: 100px;
+  height: 30px;
+  float: left;
+  margin-right: 10px;
+}
+
+#form #minmax{
+  color: black;
+  width: 200px;
+  height: 29px;
+  float: left;
+  margin-right: 10px;
+}
+
+#form #submitbutton{
+  color: black;
+  height: 28px;
+}
+
+/* Map */
+#mapid{
     position: fixed;
-    height: 100%;
-    background: black;
-    margin-bottom: 50px;
-}
-
-#sidebar #elena{
-     color: white;
-     padding-left: 10%;
-     position: relative;
-}
-
-#form{
-    padding-top: 10px;
-    padding-left: 10%;
+    float: right;
+    border: solid 2px black;
+    width: 100%;
+    height: 89%;
 }
 
 .leaflet-routing-container {
@@ -22,14 +71,8 @@
   }
 
 
-#form #minmaxlabel{
-    color: white;
-}
 
-#mapid{
-    position: fixed;
-    float: right;
-    margin-left: 250px;
-    width: 74.5%;
-    height: 98%;
-}
+  
+
+
+
