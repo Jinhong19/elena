@@ -52,14 +52,13 @@ def main_controller(start, end, percent):
 			print(sp.name)
 
 	"""
+	"""
 	for it in intersections_data:
 		print("========")
 		print(it.firstStreet)
 		print(it.secondStreet)
 		print("========")
-	graph = Graph(locations, streets, intersections_data)
-	graph.initialization()
-	
+	"""
 	"""
 	for sp in graph.graph_dict:
 		print("location name:")
@@ -71,6 +70,9 @@ def main_controller(start, end, percent):
 			print(data[2])
 		print("--------------")
 	"""
+
+	graph = Graph(locations, streets, intersections_data)
+	graph.initialization()
 	start_point = None
 	end_point = None
 	test_point = None
@@ -99,20 +101,6 @@ def main_controller(start, end, percent):
 		"all_path": all_path_to_json(graph.all_path)
 	}
 	print(json.dumps(json_output, indent=4))
-	print(len(graph.all_path))
-
-	for sp in graph.locations:
-		if sp.name == "Amherst Boys & Girls Club":
-			test_point = sp
-	print("location name:")
-	print(test_point.name)
-	print("connected to:")
-	for data in graph.graph_dict[test_point]:
-		print(data[0].name)
-		print(data[1])
-		print(data[2])
-	print("--------------")
-
 	return(json.dumps(json_output, indent=4))
 
 main_controller("Bruno's", "Northampton Cooperative Bank", 1.4)
