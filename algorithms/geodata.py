@@ -55,34 +55,36 @@ class Graph:
 			self.graph_dict[location] = []
 
 	def add_street(self, street):
-		locations = street
-		if len(locations) < 2:
+		temp_locations = []
+		for sp in street:
+			temp_locations.append(sp)
+		if len(temp_locations) < 2:
 			return
 		center = Location(-1, "temp_center", 0, 0, 0, "")
-		for sp in locations:
+		for sp in temp_locations:
 			center.lat = center.lat + sp.lat
 			center.lon = center.lon + sp.lon
-		center.lat = center.lat / len(locations)
-		center.lon = center.lon / len(locations)
+		center.lat = center.lat / len(temp_locations)
+		center.lon = center.lon / len(temp_locations)
 		edge = center
 		edge_distance = 0
-		for sp in locations:
+		for sp in temp_locations:
 			if self.get_distance(center, sp) > edge_distance:
 				edge_distance = self.get_distance(center, sp)
 				edge = sp
 
-		locations.remove(edge)
-		while len(locations) > 0:
-			close = locations[0]
-			close_distance = self.get_distance(edge, locations[0])
-			for sp in locations:
+		temp_locations.remove(edge)
+		while len(temp_locations) > 0:
+			close = temp_locations[0]
+			close_distance = self.get_distance(edge, temp_locations[0])
+			for sp in temp_locations:
 				if self.get_distance(edge, sp) < close_distance:
 					close_distance = self.get_distance(edge, sp)
 					close = sp
 			ele_change = close.ele - edge.ele
 			self.link(edge, close)
 			edge = close
-			locations.remove(close)
+			temp_locations.remove(close)
 
 	def add_intersection(self, intersection):
 		st1 = intersection.firstStreet
@@ -90,6 +92,7 @@ class Graph:
 		if st1 not in self.streets or st2 not in self.streets:
 			print("Error: Street in intersection not found")
 			return
+
 		close1 = self.streets[st1][0]
 		close2 = self.streets[st2][0]
 		center = Location(-1, "temp_center", intersection.lat, intersection.lon, 0, "")
@@ -108,8 +111,10 @@ class Graph:
 	def initialization(self):
 		for location in self.locations:
 			self.add_location(location)
+
 		for street in self.streets:
 			self.add_street(self.streets[street])
+
 		for it in self.intersections:
 			self.add_intersection(it)
 
@@ -134,6 +139,11 @@ class Graph:
 				if dist[vertex] < current_min:
 					current_min = dist[vertex]
 					target_min = vertex
+
+			if(target_min == None):
+				print("Error: Map not connected")
+				return
+			
 			q.remove(target_min)
 			if target_min == end:
 				distance = dist[end]

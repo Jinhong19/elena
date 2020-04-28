@@ -3,6 +3,7 @@ import os
 print(os.path.abspath("../Back-End"))
 sys.path.insert(1, os.path.abspath("../Back-End"))
 from server import Place
+from server import Intersection
 from geodata import *
 import json
 
@@ -42,10 +43,24 @@ def main_controller(start, end, percent):
 		else:
 			streets[sp.street] = [sp]
 
+	"""
+	for st in streets:
+		print("street name:")
+		print(st)
+		print("locations in the street:")
+		for sp in streets[st]:
+			print(sp.name)
 
+	"""
+	for it in intersections_data:
+		print("========")
+		print(it.firstStreet)
+		print(it.secondStreet)
+		print("========")
 	graph = Graph(locations, streets, intersections_data)
 	graph.initialization()
 	
+	"""
 	for sp in graph.graph_dict:
 		print("location name:")
 		print(sp.name)
@@ -55,9 +70,10 @@ def main_controller(start, end, percent):
 			print(data[1])
 			print(data[2])
 		print("--------------")
-	
+	"""
 	start_point = None
 	end_point = None
+	test_point = None
 	for sp in graph.locations:
 		if sp.name == start:
 			start_point = sp
@@ -82,6 +98,21 @@ def main_controller(start, end, percent):
 		"shortest_path": path_to_json(shortest_path),
 		"all_path": all_path_to_json(graph.all_path)
 	}
+	print(json.dumps(json_output, indent=4))
+	print(len(graph.all_path))
+
+	for sp in graph.locations:
+		if sp.name == "Amherst Boys & Girls Club":
+			test_point = sp
+	print("location name:")
+	print(test_point.name)
+	print("connected to:")
+	for data in graph.graph_dict[test_point]:
+		print(data[0].name)
+		print(data[1])
+		print(data[2])
+	print("--------------")
+
 	return(json.dumps(json_output, indent=4))
 
-print(main_controller("name of the start point", "name of the end point", "percentage of shortest path in double 1.2 as 120%"))
+main_controller("Bruno's", "Northampton Cooperative Bank", 1.4)
