@@ -2,18 +2,16 @@ import sys
 import os
 sys.path.insert(1, os.path.abspath("Back-End"))
 from eleFinder import *
-from server import Place
-from server import Intersection
+sys.path.insert(1, os.path.abspath("algorithms"))
+from pathfinder import *
 
-places = Place.query.all()
+# places = Place.query.all()
+# for e in places: 
+#     print(e.name, e.ele, e.lon)
 
-for e in places: 
-    print(e.name, e.ele, e.lon)
-
-intersections = Intersection.query.all()
-
-for e in intersections: 
-    print(e)
+# intersections = Intersection.query.all()
+# for e in intersections: 
+#     print(e)
 
 eleFinder = eleFinder()
 
