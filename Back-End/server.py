@@ -40,11 +40,23 @@ def positions():
     data = request.json
     start = data['start']
     end = data['end']
-    percentage = data['percentage'] / 100
-    min = data['mM']
-
-    print(start, end, file=sys.stderr)
-    return jsonify(data)
+    percentage = float(data['percentage'])
+    min = True if data['mM'] == 'Min' else False
+    # routes = main_controller("Bruno's", "Northampton Cooperative Bank", 1.0)
+    routes = main_controller(start, end, percentage)
+    res = {'start': start, 'end': end}
+    thePath = routes[0]
+    if min:
+        for path in routes:
+            if thePath[1] > path[1]:
+                thePath = path
+    else:
+       for path in routes:
+            if thePath[1] < path[1]:
+                thePath = path
+    pathJ = [{'lat': p[0], 'lon': p[1]} for p in thePath[0]]
+    res['route'] = pathJ
+    return jsonify(res)
 
 
 if __name__ == '__main__':

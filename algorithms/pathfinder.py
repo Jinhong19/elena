@@ -110,4 +110,3 @@ def main_controller(start, end, percent):
 	print(return_list)
 	return(return_list)
 
-main_controller("Bruno's", "Northampton Cooperative Bank", 1.0)
