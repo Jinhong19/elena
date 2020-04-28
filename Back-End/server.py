@@ -4,7 +4,7 @@ from flask_cors import CORS
 import os
 import sys
 sys.path.insert(1, os.path.abspath("algorithms"))
-# from pathfinder import *
+from pathfinder import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///geodata.db'

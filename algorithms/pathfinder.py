@@ -3,6 +3,7 @@ import os
 print(os.path.abspath("../Back-End"))
 sys.path.insert(1, os.path.abspath("../Back-End"))
 from server import Place
+from server import Intersection
 from geodata import *
 import json
 
@@ -42,7 +43,14 @@ def main_controller(start, end, percent):
 		else:
 			streets[sp.street] = [sp]
 
-
+	
+	for st in streets:
+		print("street name:")
+		print(st)
+		print("locations in the street:")
+		for sp in streets[st]:
+			print(sp.name)
+	
 	graph = Graph(locations, streets, intersections_data)
 	graph.initialization()
 	
@@ -84,4 +92,4 @@ def main_controller(start, end, percent):
 	}
 	return(json.dumps(json_output, indent=4))
 
-print(main_controller("name of the start point", "name of the end point", "percentage of shortest path in double 1.2 as 120%"))
+print(main_controller("Share Coffee", "Antonio's Pizza", 3.0))
