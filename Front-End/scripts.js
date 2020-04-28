@@ -27,6 +27,7 @@ fetch(url, {
 })
     .then(res => res.json())
     .then(data => {
+        console.log(data)
         var storeData = [];
         if(data.start.localeCompare(startValue) == 0 && data.end.localeCompare(endValue) == 0){
             for(var i = 0; i<data.route.length; i++){

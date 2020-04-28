@@ -38,10 +38,11 @@ class Intersection(db.Model):
 @app.route('/positions', methods=['POST'])
 def positions():
     data = request.json
-    # res = {'start': start, 'end': end}
     start = data['start']
     end = data['end']
-    
+    percentage = data['percentage'] / 100
+    min = data['mM']
+
     print(start, end, file=sys.stderr)
     return jsonify(data)
 
