@@ -15,11 +15,13 @@ Install dependencies
 open in a browser: Fron-End/main.html
 
 ## Screenshots
-Shortest route(100%) with minimum elevation gain  
+Search for shortest route(100%) with minimum elevation gain  
 ![100% minimum screenshot](https://github.com/Jinhong19/elena/blob/master/images/min_100.png)
 
-A route that is not longer than 160% of shortest route and maximum elevation gain  
+Search for a route that is not longer than 160% of the shortest route and with maximum elevation gain  
 ![160% maximum screenshot](https://github.com/Jinhong19/elena/blob/master/images/max_160.png)
 
-A route that is not longer than 200% of shortest route and maximum elevation gain  
+Search for a route that is not longer than 200% of the shortest route and with maximum elevation gain  
 ![200% maximum screenshot](https://github.com/Jinhong19/elena/blob/master/images/max_200.png)
+
+Limitation: Make sure location inputs are in the database(Amherst Center, MA area), see Testing/Testing.py for query examples.
