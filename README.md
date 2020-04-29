@@ -19,7 +19,7 @@ And then activate the virtual environment
 `source venv/bin/activate`
 
 Install dependencies  
-`pip install -r requirements.txt`
+`pip install -r requirements.txt`  
 You may need to also install the [Build Tools for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
 
 ## Run Server Locally
