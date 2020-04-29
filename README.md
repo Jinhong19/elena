@@ -6,7 +6,7 @@ Create and activate virtual environment
 `python3 -m venv venv`  
 `source venv/bin/activate`
 
-Install dependencies
+Install dependencies  
 `pip3 install -r requirements.txt`
 
 ### For Windows user
@@ -17,7 +17,7 @@ Alternatively, if you configured the PATH and PATHEXT variables for your Python 
 `c:\>python -m venv c:\path\to\myenv`
 `source venv/bin/activate`
 
-Install dependencies
+Install dependencies  
 `pip install -r requirements.txt`
 You may need to also install the [Build Tools for Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
 
