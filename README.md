@@ -14,7 +14,8 @@ Create and activate virtual environment
 Invoke the venv command as follows:  
 `c:\>c:\Python35\python -m venv c:\path\to\myenv`  
 Alternatively, if you configured the PATH and PATHEXT variables for your Python installation:  
-`c:\>python -m venv c:\path\to\myenv`
+`c:\>python -m venv c:\path\to\myenv`  
+And then activate the virtual environment  
 `source venv/bin/activate`
 
 Install dependencies  
