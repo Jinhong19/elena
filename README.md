@@ -10,10 +10,10 @@ Install dependencies
 `pip3 install -r requirements.txt`
 
 ### For Windows user
-Create and activate virtual environment
-Invoke the venv command as follows:
+Create and activate virtual environment  
+Invoke the venv command as follows:  
 `c:\>c:\Python35\python -m venv c:\path\to\myenv`
-Alternatively, if you configured the PATH and PATHEXT variables for your Python installation:
+Alternatively, if you configured the PATH and PATHEXT variables for your Python installation:  
 `c:\>python -m venv c:\path\to\myenv`
 `source venv/bin/activate`
 
